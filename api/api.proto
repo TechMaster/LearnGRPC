@@ -3,6 +3,33 @@ package api;
 message PingMessage {
   string greeting = 1;
 }
+
+message TwoNumbers {
+  sint32 a = 1;
+  sint32 b = 2;
+}
+
+message ResultNumber {
+  sint32 result = 1;
+}
+
+message Student {
+  int32 id = 1;
+  string name = 2;
+}
+
+message StudentResponse {
+  int32 id = 1;
+  bool success = 2;
+}
+
+message Empty {
+}
+
 service Ping {
   rpc SayHello(PingMessage) returns (PingMessage) {}
+  rpc Add(TwoNumbers) returns (ResultNumber) {}
+  
+  //rpc CreateStudent (Student) returns (StudentResponse) {}
+  rpc GetStudents(Empty) returns (stream Student) {}
 }

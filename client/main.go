@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"io"
 
 	"github.com/TechMaster/LearnGRPC/api"
 	"golang.org/x/net/context"
@@ -80,5 +81,21 @@ func main() {
 		log.Fatalf("error when calling SayHello: %s", err)
 	}
 	log.Printf("Response from server: %s", response.Greeting)
+
+	stream, err := c.GetStudents(context.Background(), &api.Empty{})
+	if err != nil {
+		log.Fatalf("Error on get customers: %v", err)
+	}
+	for {
+		// Receiving the stream of data
+		student, err := stream.Recv()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatalf("%v.GetStudents(_) = _, %v", c, err)
+		}
+		log.Printf("Students: %v", student)
+	}
 
 }
