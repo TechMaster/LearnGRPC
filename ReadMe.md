@@ -112,7 +112,7 @@ func main() {
 ```
 Biên dịch
 ```
-go build -i -v -o bin/server github.com/TechMaster/LearnGRPC/server
+go build -i -v -o bin/client github.com/TechMaster/LearnGRPC/client
 ```
 # Tham khảo
 1. [How we use gRPC to build a client/server system in Go](https://medium.com/pantomath/how-we-use-grpc-to-build-a-client-server-system-in-go-dd20045fa1c2)
